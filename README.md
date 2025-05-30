@@ -4,7 +4,7 @@ This started out as a custom Port of PPSSPP that I created to build PPSSPP on Fr
 
 This fork of my own port was mainly to prepare for the next PPSSPP release by tweaking the FreeBSD port files as necessary to build more recent upstream git commits to PPSSPP.
 
-Note: while there is in fact a [ppsspp-ffmpeg](https://github.com/hrydgard/ppsspp-ffmpeg/tree/82049cca2e4c1516ed00a77b502a21f91b7843f4) fork of [ffmpeg-3.0.2](https://github.com/FFmpeg/FFmpeg/tree/c66f4d1ae64dffaf456d05cbdade02054446f499), because ppsspp-ffmpeg's git repository includes compiled libs for a variety of operating systems and architectures, an archive of the most recent git commit is over 435 MB in size! Compare that to ffmpeg-3.0.2, at just under 7.5 MB.
+Note: while there is in fact a [ppsspp-ffmpeg](https://github.com/hrydgard/ppsspp-ffmpeg/tree/82049cca2e4c1516ed00a77b502a21f91b7843f4) fork of [ffmpeg-3.0.2](https://github.com/FFmpeg/FFmpeg/tree/c66f4d1ae64dffaf456d05cbdade02054446f499), because ppsspp-ffmpeg's git repository includes compiled libs for a variety of operating systems and architectures, an archive of the most recent git commit is over 435 MB in size! Compare that to a github archive of ffmpeg as of version 3.0.2, at just over 10.6 MB. (Or ~ 7.5 MB for the official tar.xz release on ffmpeg.org).
 
 It's possible to patch the official ffmpeg-3.0.2 archive with forked ppsspp-ffmpeg's commit as a patchfile, so that's the preferred way to do it, rather than forcing users (or package build servers) to download close to an additional 430 MB due to the inclusion of compiled libs in the ppsspp-ffmpeg repository.
 

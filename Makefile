@@ -4,9 +4,11 @@ DISTVERSION?=	1.18.1
 PORTREVISION?=	1
 CATEGORIES=	emulators
 # XXX Get from Debian once #697821 lands
-MASTER_SITES=	https://bazaar.launchpad.net/~sergio-br2/${PORTNAME}/debian-sdl/download/5/${PORTNAME}.1-20140802045408-dd26dik367ztj5xg-8/:manpage
-DISTFILES=	${PORTNAME}.1:manpage
-EXTRACT_ONLY=	${DISTFILES:N*\:manpage:C/:.*//}
+MASTER_SITES=	https://bazaar.launchpad.net/~sergio-br2/${PORTNAME}/debian-sdl/download/5/${PORTNAME}.1-20140802045408-dd26dik367ztj5xg-8/:manpage \
+		https://github.com/hrydgard/ppsspp-ffmpeg/commit/9c4f84d9d9ad147f4a44cff582829647a0c65420.patch/:ffmpegpatch
+DISTFILES=	${PORTNAME}.1:manpage \
+		9c4f84d9d9ad147f4a44cff582829647a0c65420.patch:ffmpegpatch
+EXTRACT_ONLY=	${DISTFILES:N*\:manpage:N*\:ffmpegpatch:C/:.*//}
 
 MAINTAINER=	kreinholz@gmail.com
 COMMENT=	PSP emulator in C++ with dynarec JIT for x86, ARM, MIPS
@@ -33,14 +35,14 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	hrydgard
 GH_TUPLE?=	hrydgard:glslang:8.13.3743-948-gb34f619e:glslang/ext/glslang \
 		google:cpu_features:v0.8.0-27-gfd4ffc1:cpu_features/ext/cpu_features \
-		hrydgard:ppsspp-ffmpeg:82049cc:ffmpeg/ffmpeg \
+		FFmpeg:FFmpeg:n3.0.2-gc66f4d1:ffmpeg/ffmpeg \
 		rtissera:libchdr:26d27ca:libchdr/ext/libchdr \
 		unknownbrackets:ppsspp-debugger:d358a87:debugger/assets/debugger \
 		KhronosGroup:SPIRV-Cross:sdk-1.3.239.0:SPIRV/ext/SPIRV-Cross \
 		Kingcom:armips:v0.11.0-195-ga8d71f0:armips/ext/armips \
 		Kingcom:filesystem:v1.3.2-12-g3f1c185:filesystem/ext/armips/ext/filesystem \
 		RetroAchievements:rcheevos:v11.6.0-g32917bd:rcheevos/ext/rcheevos \
-		Tencent:rapidjson:v1.1.0-415-g73063f50:rapidjson/ext/rapidjson \
+		Tencent:rapidjson:v1.1.0-415-g73063f5:rapidjson/ext/rapidjson \
 		miniupnp:miniupnp:miniupnpd_2_3_7-g27d13ca:miniupnp/ext/miniupnp
 EXCLUDE=	libzip zlib
 USE_GL=		glew opengl
@@ -159,11 +161,13 @@ post-patch:
 	for p in ${PATCHDIR}/ffmpeg/patch-*;do \
 		${PATCH} -s -p0 -d ${WRKSRC}/ffmpeg < $${p}; \
 	done
+	# apply upstream ppsspp-ffmpeg patch to ffmpeg-3.0.2 sources
+	${PATCH} -s -p1 -d ${WRKSRC}/ffmpeg < ${_DISTDIR}/9c4f84d9d9ad147f4a44cff582829647a0c65420.patch
 	# apply FreeBSD substitutions in PPSSPP sources
 	@${REINPLACE_CMD} -e 's/Linux/${OPSYS}/' ${WRKSRC}/assets/gamecontrollerdb.txt
 	@${REINPLACE_CMD} -e 's,/usr/share,${PREFIX}/share,' ${WRKSRC}/UI/NativeApp.cpp
 	@${REINPLACE_CMD} -e 's/"unknown"/"${DISTVERSIONFULL}"/' ${WRKSRC}/git-version.cmake
-	# additional substitutions for bundled ffmpeg
+	# additional substitution for bundled ffmpeg
 	@${REINPLACE_CMD} -e 's/%%ARCH%%/${ARCH}/' ${WRKSRC}/CMakeLists.txt
 
 	# build bundled ffmpeg
