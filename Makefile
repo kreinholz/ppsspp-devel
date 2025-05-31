@@ -23,7 +23,8 @@ NOT_FOR_ARCHS_REASON=	only little-endian is supported, see \
 
 BUILD_DEPENDS=	gmake:devel/gmake
 
-LIB_DEPENDS+=	libsnappy.so:archivers/snappy \
+LIB_DEPENDS+=	libzip.so:archivers/libzip \
+		libsnappy.so:archivers/snappy \
 		libzstd.so:archivers/zstd \
 		libopenxr_loader.so:graphics/openxr
 RUN_DEPENDS=	xdg-open:devel/xdg-utils
@@ -46,9 +47,9 @@ GH_TUPLE?=	hrydgard:glslang:8.13.3743-948-g50e0708:glslang/ext/glslang \
 		Tencent:rapidjson:v1.1.0-415-g73063f5:rapidjson/ext/rapidjson \
 		miniupnp:miniupnp:miniupnpd_2_3_7-g27d13ca:miniupnp/ext/miniupnp \
 		hrydgard:ppsspp-lua:7648485:lua/ext/lua
-EXCLUDE=	zlib
+EXCLUDE=	libzip zlib
 USE_GL=		glew opengl
-CMAKE_ON=	${SNAPPY ZSTD:L:S/^/USE_SYSTEM_/} USE_VULKAN_DISPLAY_KHR
+CMAKE_ON=	${LIBZIP SNAPPY ZSTD:L:S/^/USE_SYSTEM_/} USE_VULKAN_DISPLAY_KHR
 CMAKE_OFF=	USE_DISCORD
 LDFLAGS+=	-Wl,--as-needed # ICE/SM/X11/Xext, Qt5Network
 CONFLICTS_INSTALL=	${PORTNAME}-*
