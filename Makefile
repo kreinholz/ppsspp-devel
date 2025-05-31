@@ -1,7 +1,5 @@
 PORTNAME=	ppsspp
-DISTVERSIONPREFIX=	v
-DISTVERSION?=	1.18.1
-PORTREVISION?=	1
+PORTVERSION=	20250530.b53e44f
 CATEGORIES=	emulators
 # XXX Get from Debian once #697821 lands
 MASTER_SITES=	https://bazaar.launchpad.net/~sergio-br2/${PORTNAME}/debian-sdl/download/5/${PORTNAME}.1-20140802045408-dd26dik367ztj5xg-8/:manpage \
@@ -9,6 +7,8 @@ MASTER_SITES=	https://bazaar.launchpad.net/~sergio-br2/${PORTNAME}/debian-sdl/do
 DISTFILES=	${PORTNAME}.1:manpage \
 		9c4f84d9d9ad147f4a44cff582829647a0c65420.patch:ffmpegpatch
 EXTRACT_ONLY=	${DISTFILES:N*\:manpage:N*\:ffmpegpatch:C/:.*//}
+
+CONFLICTS_INSTALL=	ppsspp
 
 MAINTAINER=	kreinholz@gmail.com
 COMMENT=	PSP emulator in C++ with dynarec JIT for x86, ARM, MIPS
@@ -23,7 +23,7 @@ NOT_FOR_ARCHS_REASON=	only little-endian is supported, see \
 
 BUILD_DEPENDS=	gmake:devel/gmake
 
-LIB_DEPENDS=	libzip.so:archivers/libzip \
+LIB_DEPENDS=	#libzip.so:archivers/libzip \
 		libsnappy.so:archivers/snappy \
 		libzstd.so:archivers/zstd \
 		libopenxr_loader.so:graphics/openxr
@@ -33,7 +33,9 @@ USES=		cmake compiler:c++11-lib gl localbase:ldflags pkgconfig \
 		shebangfix desktop-file-utils
 USE_GITHUB=	yes
 GH_ACCOUNT=	hrydgard
-GH_TUPLE?=	hrydgard:glslang:8.13.3743-948-gb34f619e:glslang/ext/glslang \
+GH_PROJECT=	ppsspp
+GH_TAGNAME=	b53e44f
+GH_TUPLE?=	hrydgard:glslang:8.13.3743-948-g50e0708:glslang/ext/glslang \
 		google:cpu_features:v0.8.0-27-gfd4ffc1:cpu_features/ext/cpu_features \
 		FFmpeg:FFmpeg:n3.0.2-gc66f4d1:ffmpeg/ffmpeg \
 		rtissera:libchdr:26d27ca:libchdr/ext/libchdr \
@@ -41,10 +43,11 @@ GH_TUPLE?=	hrydgard:glslang:8.13.3743-948-gb34f619e:glslang/ext/glslang \
 		KhronosGroup:SPIRV-Cross:sdk-1.3.239.0:SPIRV/ext/SPIRV-Cross \
 		Kingcom:armips:v0.11.0-195-ga8d71f0:armips/ext/armips \
 		Kingcom:filesystem:v1.3.2-12-g3f1c185:filesystem/ext/armips/ext/filesystem \
-		RetroAchievements:rcheevos:v11.6.0-g32917bd:rcheevos/ext/rcheevos \
+		RetroAchievements:rcheevos:v11.6.0-g4697f97:rcheevos/ext/rcheevos \
 		Tencent:rapidjson:v1.1.0-415-g73063f5:rapidjson/ext/rapidjson \
-		miniupnp:miniupnp:miniupnpd_2_3_7-g27d13ca:miniupnp/ext/miniupnp
-EXCLUDE=	libzip zlib
+		miniupnp:miniupnp:miniupnpd_2_3_7-g27d13ca:miniupnp/ext/miniupnp \
+		hrydgard:ppsspp-lua:7648485:lua/ext/lua
+EXCLUDE=	zlib
 USE_GL=		glew opengl
 CMAKE_ON=	${LIBZIP SNAPPY ZSTD:L:S/^/USE_SYSTEM_/} USE_VULKAN_DISPLAY_KHR
 CMAKE_OFF=	USE_DISCORD
