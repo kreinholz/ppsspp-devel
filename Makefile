@@ -1,5 +1,5 @@
 PORTNAME=	ppsspp
-PORTVERSION=	20250530.b53e44f
+PORTVERSION=	20250601.0e25ee3
 CATEGORIES=	emulators
 # XXX Get from Debian once #697821 lands
 MASTER_SITES=	https://bazaar.launchpad.net/~sergio-br2/${PORTNAME}/debian-sdl/download/5/${PORTNAME}.1-20140802045408-dd26dik367ztj5xg-8/:manpage \
@@ -26,7 +26,8 @@ BUILD_DEPENDS=	gmake:devel/gmake
 LIB_DEPENDS+=	libzip.so:archivers/libzip \
 		libsnappy.so:archivers/snappy \
 		libzstd.so:archivers/zstd \
-		libminiupnpc.so:net/miniupnpc
+		libminiupnpc.so:net/miniupnpc \
+		libopenxr_loader.so:graphics/openxr
 RUN_DEPENDS=	xdg-open:devel/xdg-utils
 
 USES=		cmake compiler:c++11-lib gl localbase:ldflags pkgconfig \
@@ -34,7 +35,7 @@ USES=		cmake compiler:c++11-lib gl localbase:ldflags pkgconfig \
 USE_GITHUB=	yes
 GH_ACCOUNT=	hrydgard
 GH_PROJECT=	ppsspp
-GH_TAGNAME=	b53e44f
+GH_TAGNAME=	0e25ee3
 GH_TUPLE?=	hrydgard:glslang:8.13.3743-948-g50e0708:glslang/ext/glslang \
 		google:cpu_features:v0.8.0-27-gfd4ffc1:cpu_features/ext/cpu_features \
 		FFmpeg:FFmpeg:n3.0.2-gc66f4d1:ffmpeg/ffmpeg \
@@ -43,7 +44,7 @@ GH_TUPLE?=	hrydgard:glslang:8.13.3743-948-g50e0708:glslang/ext/glslang \
 		KhronosGroup:SPIRV-Cross:sdk-1.3.239.0:SPIRV/ext/SPIRV-Cross \
 		Kingcom:armips:v0.11.0-195-ga8d71f0:armips/ext/armips \
 		Kingcom:filesystem:v1.3.2-12-g3f1c185:filesystem/ext/armips/ext/filesystem \
-		RetroAchievements:rcheevos:v11.6.0-g4697f97:rcheevos/ext/rcheevos \
+		RetroAchievements:rcheevos:v11.6.0-gef0e22b:rcheevos/ext/rcheevos \
 		Tencent:rapidjson:v1.1.0-415-g73063f5:rapidjson/ext/rapidjson \
 		hrydgard:ppsspp-lua:7648485:lua/ext/lua
 EXCLUDE=	libpng17 libzip zlib
