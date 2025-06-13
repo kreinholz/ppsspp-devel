@@ -1,29 +1,23 @@
 PORTNAME=	ppsspp
-PORTVERSION=	20250601.0e25ee3
+PORTVERSION=	1.19.1.51.g986eac7
 CATEGORIES=	emulators
-# XXX Get from Debian once #697821 lands
-MASTER_SITES=	https://bazaar.launchpad.net/~sergio-br2/${PORTNAME}/debian-sdl/download/5/${PORTNAME}.1-20140802045408-dd26dik367ztj5xg-8/:manpage \
-		https://github.com/hrydgard/ppsspp-ffmpeg/commit/9c4f84d9d9ad147f4a44cff582829647a0c65420.patch/:ffmpegpatch
-DISTFILES=	${PORTNAME}.1:manpage \
-		9c4f84d9d9ad147f4a44cff582829647a0c65420.patch:ffmpegpatch
-EXTRACT_ONLY=	${DISTFILES:N*\:manpage:N*\:ffmpegpatch:C/:.*//}
-
-CONFLICTS_INSTALL=	ppsspp
 
 MAINTAINER=	kreinholz@gmail.com
 COMMENT=	PSP emulator in C++ with dynarec JIT for x86, ARM, MIPS
 WWW=		https://www.ppsspp.org/
 
-LICENSE=	GPLv2+
+LICENSE=	GPLv2+ BSD3CLAUSE
+LICENSE_COMB=	multi
+LICENSE_FILE=	${WRKSRC}/LICENSE.TXT
 
 # Bi-endian architectures default to big for some reason
 NOT_FOR_ARCHS=	mips mips64 powerpc powerpc64 powerpcspe
 NOT_FOR_ARCHS_REASON=	only little-endian is supported, see \
 		https://github.com/hrydgard/ppsspp/issues/8823
 
-BUILD_DEPENDS=	gmake:devel/gmake
+BUILD_DEPENDS=	${LOCALBASE}/ffmpeg3/lib/libavcodec.a:multimedia/ffmpeg3
 
-LIB_DEPENDS+=	libzip.so:archivers/libzip \
+LIB_DEPENDS=	libzip.so:archivers/libzip \
 		libsnappy.so:archivers/snappy \
 		libzstd.so:archivers/zstd \
 		libminiupnpc.so:net/miniupnpc \
@@ -31,15 +25,14 @@ LIB_DEPENDS+=	libzip.so:archivers/libzip \
 RUN_DEPENDS=	xdg-open:devel/xdg-utils
 
 USES=		cmake compiler:c++11-lib gl localbase:ldflags pkgconfig \
-		shebangfix desktop-file-utils
+		desktop-file-utils
 USE_GITHUB=	yes
 GH_ACCOUNT=	hrydgard
 GH_PROJECT=	ppsspp
-GH_TAGNAME=	0e25ee3
+GH_TAGNAME=	986eac7
 GH_TUPLE?=	hrydgard:glslang:8.13.3743-948-g50e0708:glslang/ext/glslang \
 		google:cpu_features:v0.8.0-27-gfd4ffc1:cpu_features/ext/cpu_features \
-		FFmpeg:FFmpeg:n3.0.2-gc66f4d1:ffmpeg/ffmpeg \
-		rtissera:libchdr:26d27ca:libchdr/ext/libchdr \
+		rtissera:libchdr:8bba774:libchdr/ext/libchdr \
 		unknownbrackets:ppsspp-debugger:d358a87:debugger/assets/debugger \
 		KhronosGroup:SPIRV-Cross:sdk-1.3.239.0:SPIRV/ext/SPIRV-Cross \
 		Kingcom:armips:v0.11.0-195-ga8d71f0:armips/ext/armips \
@@ -89,121 +82,18 @@ SDL_USE=		SDL=sdl2
 SDL_VARS=		EXENAME=PPSSPPSDL
 VULKAN_RUN_DEPENDS=	${LOCALBASE}/lib/libvulkan.so:graphics/vulkan-loader
 
-FFMPEG_CONFIGURE_ARGS=	--disable-debug \
-			--enable-static \
-			--disable-shared \
-			--enable-pic \
-			--enable-zlib \
-			--disable-everything \
-			--enable-gpl \
-			--cc="${CC}" \
-			--cxx="${CXX}" \
-			--disable-avdevice \
-			--disable-filters \
-			--disable-programs \
-			--disable-network \
-			--disable-avfilter \
-			--disable-postproc \
-			--disable-encoders \
-			--disable-doc \
-			--disable-ffplay \
-			--disable-ffprobe \
-			--disable-ffserver \
-			--disable-ffmpeg \
-			--enable-decoder=h264 \
-			--enable-decoder=mpeg4 \
-			--enable-decoder=h263 \
-			--enable-decoder=h263p \
-			--enable-decoder=mpeg2video \
-			--enable-decoder=mjpeg \
-			--enable-decoder=mjpegb \
-			--enable-decoder=aac \
-			--enable-decoder=aac_latm \
-			--enable-decoder=atrac3 \
-			--enable-decoder=atrac3p \
-			--enable-decoder=mp3 \
-			--enable-decoder=pcm_s16le \
-			--enable-decoder=pcm_s8 \
-			--enable-demuxer=h264 \
-			--enable-demuxer=h263 \
-			--enable-demuxer=m4v \
-			--enable-demuxer=mpegps \
-			--enable-demuxer=mpegvideo \
-			--enable-demuxer=avi \
-			--enable-demuxer=mp3 \
-			--enable-demuxer=aac \
-			--enable-demuxer=pmp \
-			--enable-demuxer=oma \
-			--enable-demuxer=pcm_s16le \
-			--enable-demuxer=pcm_s8 \
-			--enable-demuxer=wav \
-			--enable-encoder=ffv1 \
-			--enable-encoder=huffyuv \
-			--enable-encoder=mpeg4 \
-			--enable-encoder=pcm_s16le \
-			--enable-muxer=avi \
-			--enable-parser=h264 \
-			--enable-parser=mpeg4video \
-			--enable-parser=mpegvideo \
-			--enable-parser=aac \
-			--enable-parser=aac_latm \
-			--enable-parser=mpegaudio \
-			--enable-protocol=file \
-			--disable-sdl \
-			--disable-asm \
-			--disable-iconv \
-			--disable-vaapi \
-			--disable-hwaccels \
-			--enable-lto \
-			--enable-optimizations \
-			--enable-runtime-cpudetect
-SHEBANG_FILES=	${WRKSRC}/ffmpeg/doc/texi2pod.pl
-
 post-patch:
-	# apply FreeBSD patches for ffmpeg
-	for p in ${PATCHDIR}/ffmpeg/patch-*;do \
-		${PATCH} -s -p0 -d ${WRKSRC}/ffmpeg < $${p}; \
-	done
-	# apply upstream ppsspp-ffmpeg patch to ffmpeg-3.0.2 sources
-	${PATCH} -s -p1 -d ${WRKSRC}/ffmpeg < ${_DISTDIR}/9c4f84d9d9ad147f4a44cff582829647a0c65420.patch
-	# apply FreeBSD substitutions in PPSSPP sources
 	@${REINPLACE_CMD} -e 's/Linux/${OPSYS}/' ${WRKSRC}/assets/gamecontrollerdb.txt
 	@${REINPLACE_CMD} -e 's,/usr/share,${PREFIX}/share,' ${WRKSRC}/UI/NativeApp.cpp
 	@${REINPLACE_CMD} -e 's/"unknown"/"${DISTVERSIONFULL}"/' ${WRKSRC}/git-version.cmake
-	# additional substitution for bundled ffmpeg
-	@${REINPLACE_CMD} -e 's/%%ARCH%%/${ARCH}/' ${WRKSRC}/CMakeLists.txt
-
-	# build bundled ffmpeg
-	cd ${WRKSRC}/ffmpeg && \
-		${SETENV} ${CONFIGURE_ENV} CC=${CC} CXX=${CXX} ./configure ${FFMPEG_CONFIGURE_ARGS} && \
-			${SETENV} ${MAKE_ENV} _COMPILER_ARGS+=features,c11 \
-			CPPFLAGS+='-isystem ${LOCALBASE}/include' \
-			CFLAGS+='-isystem ${LOCALBASE}/include' \
-			CXXFLAGS+='-isystem ${LOCALBASE}/include' \
-			LDFLAGS+=-L${LOCALBASE}/lib \
-			${GMAKE} -j ${MAKE_JOBS_NUMBER}
-	${MKDIR} ${WRKSRC}/ffmpeg/FreeBSD/${ARCH}/lib
-	${MKDIR} ${WRKSRC}/ffmpeg/FreeBSD/${ARCH}/include
-	${MKDIR} ${WRKSRC}/ffmpeg/FreeBSD/${ARCH}/include/libavcodec
-	${MKDIR} ${WRKSRC}/ffmpeg/FreeBSD/${ARCH}/include/libavformat
-	${MKDIR} ${WRKSRC}/ffmpeg/FreeBSD/${ARCH}/include/libavutil
-	${MKDIR} ${WRKSRC}/ffmpeg/FreeBSD/${ARCH}/include/libswresample
-	${MKDIR} ${WRKSRC}/ffmpeg/FreeBSD/${ARCH}/include/libswscale
-	for i in `cat ${PATCHDIR}/ffmpeg/ffmpeg-libs`;do \
-		${MV} ${WRKSRC}/$${i} \
-			${WRKSRC}/ffmpeg/FreeBSD/${ARCH}/lib; \
-	done
-	for i in `cat ${PATCHDIR}/ffmpeg/ffmpeg-includes`;do \
-		${MV} ${WRKSRC}/ffmpeg/$${i} \
-			${WRKSRC}/ffmpeg/FreeBSD/${ARCH}/include/$${i}; \
-	done
+	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' ${WRKSRC}/cmake/Modules/FindFFmpeg.cmake
 
 do-install-LIBRETRO-on:
 	${MKDIR} ${STAGEDIR}${PREFIX}/${LIBRETRO_PLIST_FILES:H}
 	${INSTALL_LIB} ${BUILD_WRKSRC}/lib/${LIBRETRO_PLIST_FILES:T} \
 		${STAGEDIR}${PREFIX}/${LIBRETRO_PLIST_FILES:H}
 .if ${OPTIONS_SLAVE} == LIBRETRO
-.  for d in applications icons man mime ${PORTNAME}
+.  for d in applications icons mime ${PORTNAME}
 	${RM} -r ${STAGEDIR}${PREFIX}/share/${d}
 .  endfor
 .endif
@@ -213,6 +103,5 @@ do-install-QT5-on do-install-SDL-on:
 	${ELFCTL} -e +wxneeded ${STAGEDIR}${PREFIX}/bin/*
 .endif
 	${MV} ${STAGEDIR}${PREFIX}/bin/${EXENAME} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
-	${INSTALL_MAN} ${_DISTDIR}/${PORTNAME}.1 ${STAGEDIR}${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>

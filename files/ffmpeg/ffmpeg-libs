@@ -1,5 +1,0 @@
-ffmpeg/libavcodec/libavcodec.a
-ffmpeg/libavformat/libavformat.a
-ffmpeg/libavutil/libavutil.a
-ffmpeg/libswresample/libswresample.a
-ffmpeg/libswscale/libswscale.a
