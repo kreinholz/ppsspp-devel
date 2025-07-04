@@ -1,5 +1,5 @@
 PORTNAME=	ppsspp
-PORTVERSION=	1.19.1.51.g986eac7
+PORTVERSION=	1.19.2.211.g1ce6082
 CATEGORIES=	emulators
 
 MAINTAINER=	kreinholz@gmail.com
@@ -29,17 +29,17 @@ USES=		cmake compiler:c++11-lib gl localbase:ldflags pkgconfig \
 USE_GITHUB=	yes
 GH_ACCOUNT=	hrydgard
 GH_PROJECT=	ppsspp
-GH_TAGNAME=	986eac7
-GH_TUPLE?=	hrydgard:glslang:8.13.3743-948-g50e0708:glslang/ext/glslang \
-		google:cpu_features:v0.8.0-27-gfd4ffc1:cpu_features/ext/cpu_features \
-		rtissera:libchdr:8bba774:libchdr/ext/libchdr \
-		unknownbrackets:ppsspp-debugger:d358a87:debugger/assets/debugger \
+GH_TAGNAME=	1ce6082
+GH_TUPLE?=	Kingcom:armips:v0.11.0-195-ga8d71f0:armips/ext/armips \
+		hrydgard:glslang:8.13.3743-948-g50e0708:glslang/ext/glslang \
 		KhronosGroup:SPIRV-Cross:sdk-1.3.239.0:SPIRV/ext/SPIRV-Cross \
-		Kingcom:armips:v0.11.0-195-ga8d71f0:armips/ext/armips \
-		Kingcom:filesystem:v1.3.2-12-g3f1c185:filesystem/ext/armips/ext/filesystem \
-		RetroAchievements:rcheevos:v11.6.0-gef0e22b:rcheevos/ext/rcheevos \
 		Tencent:rapidjson:v1.1.0-415-g73063f5:rapidjson/ext/rapidjson \
-		hrydgard:ppsspp-lua:7648485:lua/ext/lua
+		unknownbrackets:ppsspp-debugger:9776332:debugger/assets/debugger \
+		google:cpu_features:v0.8.0-27-gfd4ffc1:cpu_features/ext/cpu_features \
+		RetroAchievements:rcheevos:v11.6.0-gef0e22b:rcheevos/ext/rcheevos \
+		rtissera:libchdr:8bba774:libchdr/ext/libchdr \
+		hrydgard:ppsspp-lua:7648485:lua/ext/lua \
+		Kingcom:filesystem:v1.3.2-12-g3f1c185:filesystem/ext/armips/ext/filesystem		
 EXCLUDE=	libzip zlib
 USE_GL=		glew opengl
 CMAKE_ON=	${LIBZIP MINIUPNPC SNAPPY ZSTD:L:S/^/USE_SYSTEM_/} USE_VULKAN_DISPLAY_KHR
