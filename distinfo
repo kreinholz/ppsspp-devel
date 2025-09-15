@@ -1,6 +1,6 @@
-TIMESTAMP = 1755977061
-SHA256 (hrydgard-ppsspp-1.19.3.473.g69ecbaf-69ecbaf_GH0.tar.gz) = d7e1e780c14877276c0f0af346a1463bca776d4588ab756029239d913a450688
-SIZE (hrydgard-ppsspp-1.19.3.473.g69ecbaf-69ecbaf_GH0.tar.gz) = 38995169
+TIMESTAMP = 1757895020
+SHA256 (hrydgard-ppsspp-1.19.3.655.gc7aa2bc-c7aa2bc_GH0.tar.gz) = b48a89d314755aee8331abf0c97735b729d2ea140254e674cb0800fe6807e664
+SIZE (hrydgard-ppsspp-1.19.3.655.gc7aa2bc-c7aa2bc_GH0.tar.gz) = 39169356
 SHA256 (Kingcom-armips-v0.11.0-195-ga8d71f0_GH0.tar.gz) = 8a46d92b070de90cefcd89c2894344d040481e1cf6216b31f4a5e531254fed88
 SIZE (Kingcom-armips-v0.11.0-195-ga8d71f0_GH0.tar.gz) = 223306
 SHA256 (hrydgard-glslang-2.3-3991-g50e0708e_GH0.tar.gz) = 720e01f16e5ee2f7ada49ba0464232380bf71339c836cc4fabbabef2a741818b
@@ -13,11 +13,13 @@ SHA256 (unknownbrackets-ppsspp-debugger-9776332f720c854ef26f325a0cf9e32c02115a9c
 SIZE (unknownbrackets-ppsspp-debugger-9776332f720c854ef26f325a0cf9e32c02115a9c_GH0.tar.gz) = 810347
 SHA256 (google-cpu_features-v0.4.1-211-gfd4ffc1_GH0.tar.gz) = 20115fd59cf2db71594d71acf3dacfdaf6c1bdf54c1656f781fce4844a803e08
 SIZE (google-cpu_features-v0.4.1-211-gfd4ffc1_GH0.tar.gz) = 109042
-SHA256 (RetroAchievements-rcheevos-v11.6.0-gef0e22b_GH0.tar.gz) = 5d424b58ae280f56ee04a846d7f5e90e289f747e9ae4ac2d29e46761133d009e
-SIZE (RetroAchievements-rcheevos-v11.6.0-gef0e22b_GH0.tar.gz) = 417751
+SHA256 (RetroAchievements-rcheevos-v11.6.0-71-gb443902_GH0.tar.gz) = 509315a79b67db6d1ad65d23aaafb613d3321264404ab6d4760bb7cde4da586f
+SIZE (RetroAchievements-rcheevos-v11.6.0-71-gb443902_GH0.tar.gz) = 419840
 SHA256 (rtissera-libchdr-8bba7745d758627258b315997a860039244cedaf_GH0.tar.gz) = 169e3d2edf86d5501434301fa2505319ebd40aae83d4a5eedf05f6becbf13a3b
 SIZE (rtissera-libchdr-8bba7745d758627258b315997a860039244cedaf_GH0.tar.gz) = 4222665
 SHA256 (hrydgard-ppsspp-lua-7648485f14e8e5ee45e8e39b1eb4d3206dbd405a_GH0.tar.gz) = ee31027159979d7be564e19710e10339179992f6d663d38337e78340dd31987b
 SIZE (hrydgard-ppsspp-lua-7648485f14e8e5ee45e8e39b1eb4d3206dbd405a_GH0.tar.gz) = 239843
+SHA256 (hrydgard-freetype-063ed27f481f0bcd3962fd468e1546739d7d285a_GH0.tar.gz) = 4a973f0bc38c32d56e8233c5f855c2487f2ba5a694e01e83e2c03783716cf691
+SIZE (hrydgard-freetype-063ed27f481f0bcd3962fd468e1546739d7d285a_GH0.tar.gz) = 2519166
 SHA256 (Kingcom-filesystem-v1.1.2-171-g3f1c185_GH0.tar.gz) = 9f3866efc8b8b29cd9ff51c0cce8a281ff88cd34694d8da0d064cb82d95b8b71
 SIZE (Kingcom-filesystem-v1.1.2-171-g3f1c185_GH0.tar.gz) = 163405
