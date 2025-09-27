@@ -1,6 +1,6 @@
-TIMESTAMP = 1757895020
-SHA256 (hrydgard-ppsspp-1.19.3.655.gc7aa2bc-c7aa2bc_GH0.tar.gz) = b48a89d314755aee8331abf0c97735b729d2ea140254e674cb0800fe6807e664
-SIZE (hrydgard-ppsspp-1.19.3.655.gc7aa2bc-c7aa2bc_GH0.tar.gz) = 39169356
+TIMESTAMP = 1758984220
+SHA256 (hrydgard-ppsspp-1.19.3.731.gd43f24d-d43f24d_GH0.tar.gz) = be8e223839d4d7f39584f17463c187b60650162a9c2764d775d339c71b36cfb1
+SIZE (hrydgard-ppsspp-1.19.3.731.gd43f24d-d43f24d_GH0.tar.gz) = 39012227
 SHA256 (Kingcom-armips-v0.11.0-195-ga8d71f0_GH0.tar.gz) = 8a46d92b070de90cefcd89c2894344d040481e1cf6216b31f4a5e531254fed88
 SIZE (Kingcom-armips-v0.11.0-195-ga8d71f0_GH0.tar.gz) = 223306
 SHA256 (hrydgard-glslang-2.3-3991-g50e0708e_GH0.tar.gz) = 720e01f16e5ee2f7ada49ba0464232380bf71339c836cc4fabbabef2a741818b
@@ -21,5 +21,7 @@ SHA256 (hrydgard-ppsspp-lua-7648485f14e8e5ee45e8e39b1eb4d3206dbd405a_GH0.tar.gz)
 SIZE (hrydgard-ppsspp-lua-7648485f14e8e5ee45e8e39b1eb4d3206dbd405a_GH0.tar.gz) = 239843
 SHA256 (hrydgard-freetype-063ed27f481f0bcd3962fd468e1546739d7d285a_GH0.tar.gz) = 4a973f0bc38c32d56e8233c5f855c2487f2ba5a694e01e83e2c03783716cf691
 SIZE (hrydgard-freetype-063ed27f481f0bcd3962fd468e1546739d7d285a_GH0.tar.gz) = 2519166
+SHA256 (hrydgard-nanosvg-478dbb8f7ed11c3d9b20b3986a8ee2283f483ef7_GH0.tar.gz) = 0f5702795d506807c82a3d933827a3988cf4b9ffa6032cb67538de90791fc0a6
+SIZE (hrydgard-nanosvg-478dbb8f7ed11c3d9b20b3986a8ee2283f483ef7_GH0.tar.gz) = 298163
 SHA256 (Kingcom-filesystem-v1.1.2-171-g3f1c185_GH0.tar.gz) = 9f3866efc8b8b29cd9ff51c0cce8a281ff88cd34694d8da0d064cb82d95b8b71
 SIZE (Kingcom-filesystem-v1.1.2-171-g3f1c185_GH0.tar.gz) = 163405
