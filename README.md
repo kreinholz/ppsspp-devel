@@ -4,7 +4,17 @@ This started out as a custom Port of PPSSPP that I created to build PPSSPP on Fr
 
 This fork of my own port was mainly to prepare for the next PPSSPP release by tweaking the FreeBSD port files as necessary to build more recent upstream git commits to PPSSPP.
 
-Originally, as an experiment I incorporated building bundled ffmpeg into this unofficial ppsspp-devel port. However, it only works on a "dirty" live system, due to hacky things I had to do to avoid conflicts between cmake and gmake. It will fail in a clean build environment using e.g. synth. Going forward, I've reverted to the setup used in the official port--setting a build dependency on multimedia/ffmpeg3.
+Originally, as an experiment I incorporated building bundled ffmpeg into this unofficial ppsspp-devel port. While it can be done, this makes for a far messier Makefile for the emulators/ppsspp port which in turn leads to maintenance overhead. Going forward, I've reverted to the setup used in the official port--setting a build dependency on multimedia/ffmpeg3.
+ 
+Note: PPSSPP sometimes hangs at startup with the Vulkan backend, presumably after updating or rebuilding GPU drivers (NVIDIA in my case). Performing the following steps clears this up and allows PPSSPP to run smoothly again with the Vulkan backend:
+
+```
+rm ~/.config/ppsspp/PSP/SYSTEM/CACHE/*
+rm ~/.cache/nvidia/GLCache/2908e7a488a0c7c0446063d5e6978db9/af5057cfd6172ecd/*
+```
+
+The latter line of course only applies to users with NVIDIA GPUs. This will need to be adjusted accordingly for other GPUs. Additionally, the two directories after GLCache/ will probably vary from system to system--this is just what they're called on mine. 
+
 
 Old Notes (obsoleted 12 June 2025):
 
