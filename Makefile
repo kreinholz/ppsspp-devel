@@ -1,5 +1,5 @@
 PORTNAME=	ppsspp
-PORTVERSION=	1.19.3.1213.gae856c5
+PORTVERSION=	1.19.3.1265.g99351ba
 CATEGORIES=	emulators
 
 MAINTAINER=	kreinholz@gmail.com
@@ -29,7 +29,7 @@ USES=		cmake compiler:c++11-lib gl localbase:ldflags pkgconfig \
 USE_GITHUB=	yes
 GH_ACCOUNT=	hrydgard
 GH_PROJECT=	ppsspp
-GH_TAGNAME=	ae856c5
+GH_TAGNAME=	99351ba
 GH_TUPLE?=	Kingcom:armips:v0.11.0-195-ga8d71f0:armips/ext/armips \
                 hrydgard:glslang:2.3-3991-g50e0708e:glslang/ext/glslang \
                 KhronosGroup:SPIRV-Cross:4212eef67ed0ca048cb726a6767185504e7695e5:SPIRVCross/ext/SPIRV-Cross \
