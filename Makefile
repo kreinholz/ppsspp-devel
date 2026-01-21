@@ -1,5 +1,5 @@
 PORTNAME=	ppsspp
-PORTVERSION=	1.19.3.1301.g3f3b353
+PORTVERSION=	1.19.3.1366.g63347d3
 CATEGORIES=	emulators
 
 MAINTAINER=	kreinholz@gmail.com
@@ -29,19 +29,21 @@ USES=		cmake compiler:c++11-lib gl localbase:ldflags pkgconfig \
 USE_GITHUB=	yes
 GH_ACCOUNT=	hrydgard
 GH_PROJECT=	ppsspp
-GH_TAGNAME=	3f3b353
+GH_TAGNAME=	63347d3
 GH_TUPLE?=	Kingcom:armips:v0.11.0-195-ga8d71f0:armips/ext/armips \
                 hrydgard:glslang:2.3-3991-g50e0708e:glslang/ext/glslang \
                 KhronosGroup:SPIRV-Cross:4212eef67ed0ca048cb726a6767185504e7695e5:SPIRVCross/ext/SPIRV-Cross \
 		Tencent:rapidjson:73063f5002612c6bf64fe24f851cd5cc0d83eef9:rapidjson/ext/rapidjson \
 		unknownbrackets:ppsspp-debugger:9776332f720c854ef26f325a0cf9e32c02115a9c:ppssppdebugger/assets/debugger \
 		google:cpu_features:v0.4.1-211-gfd4ffc1:cpu_features/ext/cpu_features \
-		RetroAchievements:rcheevos:v11.6.0-119-g926e460:rcheevos/ext/rcheevos \
+		RetroAchievements:rcheevos:v12.2.1:rcheevos/ext/rcheevos \
         	rtissera:libchdr:8bba7745d758627258b315997a860039244cedaf:libchdr/ext/libchdr \
                 hrydgard:ppsspp-lua:7648485f14e8e5ee45e8e39b1eb4d3206dbd405a:ppsspplua/ext/lua \
 		hrydgard:freetype:063ed27f481f0bcd3962fd468e1546739d7d285a:freetype/ext/freetype \
 		hrydgard:nanosvg:478dbb8f7ed11c3d9b20b3986a8ee2283f483ef7:nanosvg/ext/nanosvg \
-                Kingcom:filesystem:v1.1.2-171-g3f1c185:filesystem/ext/armips/ext/filesystem
+		Kethen:aemu_postoffice:098039af82636fa8c5ce10f227aa340e23c77251:aemu_postoffice/ext/aemu_postoffice \
+                Kingcom:filesystem:v1.1.2-171-g3f1c185:filesystem/ext/armips/ext/filesystem \
+		nyorain:dlg:v0.2.2-50-g395ccad:dlg/ext/freetype/subprojects/dlg
 EXCLUDE=	libzip zlib
 USE_GL=		glew opengl
 CMAKE_ON=	${LIBZIP MINIUPNPC SNAPPY ZSTD:L:S/^/USE_SYSTEM_/} USE_VULKAN_DISPLAY_KHR

@@ -1,9 +1,9 @@
 EGL hangs on X11 and doesn't build without GLESv2.
 https://github.com/hrydgard/ppsspp/issues/10626
 
---- CMakeLists.txt.orig	2025-05-30 21:23:20 UTC
+--- CMakeLists.txt.orig	2026-01-21 02:53:44 UTC
 +++ CMakeLists.txt
-@@ -83,12 +83,6 @@ endif()
+@@ -84,12 +84,6 @@ endif()
  	set(USE_SYSTEM_FFMPEG ON)
  endif()
  
@@ -16,12 +16,21 @@ https://github.com/hrydgard/ppsspp/issues/10626
  if(${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND NOT USE_LIBNX)
  	set(LINUX ON)
  	add_compile_definitions(__STDC_CONSTANT_MACROS)
-@@ -1009,6 +1003,8 @@ if(USE_FFMPEG)
+@@ -1031,6 +1025,8 @@ if(USE_FFMPEG)
  				elseif(X86)
  					set(PLATFORM_ARCH "Windows/x86")
  				endif()
 +			else()
 +				set(PLATFORM_ARCH "FreeBSD/%%ARCH%%")
  			endif()
- 			if(PLATFORM_ARCH)
- 				set(FFMPEG_DIR "ffmpeg/${PLATFORM_ARCH}")
+ 			if(WEBOS)
+ 				set(PLATFORM_ARCH "linux/webos")
+@@ -2096,7 +2092,7 @@ endif()
+ 	)
+ endif()
+ 
+-if(LINUX OR ANDROID OR MACOSX OR IOS)
++if(LINUX OR ANDROID OR MACOSX OR IOS OR BSD)
+ 	set(aemu_postoffice
+ 		${aemu_postoffice}
+ 		ext/aemu_postoffice/client/sock_impl_linux.c
