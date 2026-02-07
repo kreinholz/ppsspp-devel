@@ -1,5 +1,5 @@
 PORTNAME=	ppsspp
-PORTVERSION=	1.19.3.1496.g0b529c2
+PORTVERSION=	1.19.3.1588.g1ce9db0
 CATEGORIES=	emulators
 
 MAINTAINER=	kreinholz@gmail.com
@@ -29,7 +29,7 @@ USES=		cmake compiler:c++11-lib gl localbase:ldflags pkgconfig \
 USE_GITHUB=	yes
 GH_ACCOUNT=	hrydgard
 GH_PROJECT=	ppsspp
-GH_TAGNAME=	0b529c2
+GH_TAGNAME=	1ce9db0
 GH_TUPLE?=	Kingcom:armips:v0.11.0-195-ga8d71f0:armips/ext/armips \
                 hrydgard:glslang:2.3-3991-g50e0708e:glslang/ext/glslang \
                 KhronosGroup:SPIRV-Cross:4212eef67ed0ca048cb726a6767185504e7695e5:SPIRVCross/ext/SPIRV-Cross \
@@ -42,7 +42,7 @@ GH_TUPLE?=	Kingcom:armips:v0.11.0-195-ga8d71f0:armips/ext/armips \
                 hrydgard:ppsspp-lua:7648485f14e8e5ee45e8e39b1eb4d3206dbd405a:ppsspplua/ext/lua \
 		hrydgard:freetype:063ed27f481f0bcd3962fd468e1546739d7d285a:freetype/ext/freetype \
 		hrydgard:nanosvg:478dbb8f7ed11c3d9b20b3986a8ee2283f483ef7:nanosvg/ext/nanosvg \
-		Kethen:aemu_postoffice:098039af82636fa8c5ce10f227aa340e23c77251:aemu_postoffice/ext/aemu_postoffice \
+		Kethen:aemu_postoffice:b0625ecb6502038b770eab638143f89699c96bfc:aemu_postoffice/ext/aemu_postoffice \
                 Kingcom:filesystem:v1.1.2-171-g3f1c185:filesystem/ext/armips/ext/filesystem \
 		nyorain:dlg:v0.2.2-50-g395ccad:dlg/ext/freetype/subprojects/dlg
 EXCLUDE=	libzip zlib
